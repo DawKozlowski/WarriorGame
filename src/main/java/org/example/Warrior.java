@@ -1,15 +1,26 @@
 package org.example;
 
-public class Warrior {
-    private static final int ATTACK = 5;
+public class Warrior implements Unit, Cloneable{
+    static final int ATTACK = 5;
     static final int INITIAL_HEALTH  = 50;
-    private int health =INITIAL_HEALTH;
+    private int health;
+    private int attack;
+
+    public Warrior() {
+        this(INITIAL_HEALTH, ATTACK);
+    }
+
+    protected Warrior(int health, int attack) {
+        this.health=health;
+        this.attack=attack;
+    }
+
     public boolean isAlive() {
         return health >0;
     }
 
     public int getAttack() {
-        return ATTACK;
+        return attack;
     }
 
     public int getHealth() {
@@ -18,5 +29,13 @@ public class Warrior {
 
     public void hit(Warrior opponent){
         opponent.health -= getAttack();
+    }
+
+    @Override
+    public Warrior clone() {
+        try {
+            return (Warrior) super.clone();
+        } catch (CloneNotSupportedException e) {}
+        return null;
     }
 }
