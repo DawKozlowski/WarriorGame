@@ -1,6 +1,6 @@
 package org.example;
 
-public class Warrior implements Unit, Cloneable{
+public class Warrior implements Unit, Cloneable /*CanFight*/{
     static final int ATTACK = 5;
     static final int INITIAL_HEALTH  = 50;
     private int health;
@@ -23,13 +23,19 @@ public class Warrior implements Unit, Cloneable{
         return attack;
     }
 
+    public void setHealth(int health) {
+        this.health = health;
+    }
+
     public int getHealth() {
         return health;
     }
 
+
     public void hit(Warrior opponent){
         opponent.health -= getAttack();
     }
+
 
     @Override
     public Warrior clone() {
@@ -38,4 +44,17 @@ public class Warrior implements Unit, Cloneable{
         } catch (CloneNotSupportedException e) {}
         return null;
     }
+
+
+    /*
+    public void hit(CanFight opponent){
+        opponent.receiveDamage(new SimpleDamage(getAttack()), this);
+    }
+
+    @Override
+    public void receiveDamage(Damage damage, CanFight damageDealer) {
+        setHealth(getHealth() - damage.getHitPoints());
+    }
+    */
+
 }
