@@ -33,7 +33,12 @@ public class Warrior implements Unit, Cloneable /*CanFight*/{
 
 
     public void hit(Warrior opponent){
-        opponent.health -= getAttack();
+        if(opponent instanceof Defender){
+            if(getAttack()<=Defender.DEFENCE) opponent.health -= 0;
+            if(getAttack()>Defender.DEFENCE) opponent.health -= getAttack()-Defender.DEFENCE;
+        }else {
+            opponent.health -= getAttack();
+        }
     }
 
 
