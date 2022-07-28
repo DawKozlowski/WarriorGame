@@ -23,19 +23,13 @@ public class Warrior implements Unit, Cloneable /*CanFight*/{
         return attack;
     }
 
-    public void setHealth(int health) {
-        this.health = health;
-    }
-
     public int getHealth() {
         return health;
     }
 
-
     public void hit(Warrior opponent){
         opponent.health -= getAttack();
     }
-
 
     @Override
     public Warrior clone() {
@@ -45,16 +39,5 @@ public class Warrior implements Unit, Cloneable /*CanFight*/{
         return null;
     }
 
-
-    /*
-    public void hit(CanFight opponent){
-        opponent.receiveDamage(new SimpleDamage(getAttack()), this);
-    }
-
-    @Override
-    public void receiveDamage(Damage damage, CanFight damageDealer) {
-        setHealth(getHealth() - damage.getHitPoints());
-    }
-    */
 
 }

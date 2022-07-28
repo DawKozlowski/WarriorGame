@@ -2,6 +2,10 @@ package org.example;
 
 public class Battle {
 
+    private Battle() {
+        throw new IllegalStateException("Utility class");
+    }
+
     public static boolean fight(Warrior warrior1, Warrior warrior2) {
         while(warrior1.isAlive() && warrior2.isAlive()) {
             warrior1.hit(warrior2);
@@ -23,55 +27,6 @@ public class Battle {
 
         return  it1.hasNext();
     }
-
-
-
-
-    /*public static boolean fight(Army army1, Army army2) {
-        while(army1.isAlive() && army2.isAlive()) {
-            if(fight(army1.getWarrior(), army2.getWarrior())){
-                army2.removeWarrior();
-            }else {
-                army1.removeWarrior();
-            }
-        }
-        return army1.isAlive();
-    }*/
-
-
-
-
-    /*public static boolean fight(CanFight side1, CanFight side2) {
-        while(side1.isAlive() && side2.isAlive()) {
-            side1.hit(side2);
-            if (side2.isAlive()) {
-                side2.hit(side1);
-            }
-        }
-        return side1.isAlive();
-    }*/
-
-
-
-    /*public static boolean fight(Army army1, Army army2) {
-        int i=0;
-        int j=0;
-        int sizeOfFirstArmy=army1.getTroops().size();
-        int sizeOfSecondArmy=army2.getTroops().size();
-
-        while(sizeOfFirstArmy != i && sizeOfSecondArmy != j) {
-            boolean result = fight((Warrior) army1.getTroops().get(i), (Warrior) army2.getTroops().get(j));
-            if (result) {
-                j++;
-            } else {
-                i++;
-            }
-        }
-
-        Warrior lastWarrior = (Warrior) army1.getTroops().get(sizeOfFirstArmy-1);
-        return lastWarrior.isAlive();
-    }*/
-
 
 
 

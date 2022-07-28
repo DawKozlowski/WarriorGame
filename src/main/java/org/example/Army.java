@@ -6,8 +6,6 @@ import java.util.function.Supplier;
 public class Army {
     private List<Warrior> troops = new ArrayList<>();
 
-    //private Queue<Warrior> troops = new LinkedList<>();
-
     public Iterator<Warrior> firstAlive() {
         return new FirstAliveIterator();
     }
@@ -62,25 +60,4 @@ public class Army {
         return this;
     }
 
-
-    /*boolean isAlive() {
-       return !troops.isEmpty();
-    }
-
-    Warrior getWarrior() {
-        return troops.peek();
-    }
-
-    void removeWarrior() {
-        troops.remove();
-    }
-
-    public Queue<Warrior> getTroops() {
-        return troops;
-    }*/
-
-
-   /* public List<Warrior> getTroops() {
-        return troops;
-    }*/
 }

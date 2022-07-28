@@ -141,5 +141,32 @@ public class BattleSuitTest {
         assertTrue(answer);
     }
 
+    @Test
+    @DisplayName("8. Battle: 7 Warriors vs 1 Knight. First Army should win")
+    void test08() {
+        //arrange
+        var army1 = new Army();
+        var army2 = new Army();
+        army1.addUnits(Unit.UnitType.WARRIOR, 7);
+        army2.addUnits(new Warrior(), 1);
+        //act
+        var answer = Battle.fight(army1, army2);
+        //assert
+        assertTrue(answer);
+    }
+
+    @Test
+    @DisplayName("8. Battle: 8 Warriors vs 1 Knight. First Army should win")
+    void test09() {
+        //arrange
+        var army1 = new Army();
+        var army2 = new Army();
+        army1.addUnits(Unit.UnitType.WARRIOR, 7);
+        army2.addUnits(Warrior.class, 1);
+        //act
+        var answer = Battle.fight(army1, army2);
+        //assert
+        assertTrue(answer);
+    }
 
 }
