@@ -44,7 +44,7 @@ public class BattleSuitTest {
 
     @Test
     @DisplayName("1. Battle: 1 Warrior vs 2 Warriors. Second Army should win")
-    void test01() {
+    void when1WarriorArmyAttacks2WarriorsArmy_Expect_SecondArmyWins() {
         //arrange
         var army1 = new Army();
         var army2 = new Army();
@@ -58,7 +58,7 @@ public class BattleSuitTest {
 
     @Test
     @DisplayName("2. Battle: 2 Warriors vs 3 Warriors. Second Army should win")
-    void test02() {
+    void when2WarriorsArmyAttacks3WarriorsArmy_Expect_SecondArmyWins() {
         //arrange
         var army1 = new Army();
         var army2 = new Army();
@@ -72,7 +72,7 @@ public class BattleSuitTest {
 
     @Test
     @DisplayName("3. Battle: 5 Warriors vs 7 Warriors. Second Army should win")
-    void test03() {
+    void when5WarriorsArmyAttacks7WarriorsArmy_Expect_SecondArmyWins() {
         //arrange
         var army1 = new Army();
         var army2 = new Army();
@@ -86,7 +86,7 @@ public class BattleSuitTest {
 
     @Test
     @DisplayName("4. Battle: 20 Warriors vs 21 Warriors. First Army should win")
-    void test04() {
+    void when20WarriorsArmyAttacks21WarriorsArmy_Expect_FirstArmyWins() {
         //arrange
         var army1 = new Army();
         var army2 = new Army();
@@ -100,7 +100,7 @@ public class BattleSuitTest {
 
     @Test
     @DisplayName("5. Battle: 10 Warriors vs 11 Warriors. First Army should win")
-    void test05() {
+    void when10WarriorsArmyAttacks11WarriorsArmy_Expect_FirstArmyWins() {
         //arrange
         var army1 = new Army();
         var army2 = new Army();
@@ -114,7 +114,7 @@ public class BattleSuitTest {
 
     @Test
     @DisplayName("6. Battle: 11 Warriors vs 7 Warriors. First Army should win")
-    void test06() {
+    void when11WarriorsArmyAttacks7WarriorsArmy_Expect_FirstArmyWins() {
         //arrange
         var army1 = new Army();
         var army2 = new Army();
@@ -128,7 +128,7 @@ public class BattleSuitTest {
 
     @Test
     @DisplayName("7. Battle: 11 Warriors vs 7 Warriors and 1 Knight. First Army should win")
-    void test07() {
+    void when11WarriorsArmyAttacks7WarriorsAnd1KnightArmy_Expect_FirstArmyWins() {
         //arrange
         var army1 = new Army();
         var army2 = new Army();
@@ -141,5 +141,80 @@ public class BattleSuitTest {
         assertTrue(answer);
     }
 
+    @Test
+    @DisplayName("8. Battle: 7 Warriors vs 1 Knight. First Army should win")
+    void when7WarriorsArmyAttacks1KnightArmy_Expect_FirstArmyWins() {
+        //arrange
+        var army1 = new Army();
+        var army2 = new Army();
+        army1.addUnits(Unit.UnitType.WARRIOR, 7);
+        army2.addUnits(new Warrior(), 1);
+        //act
+        var answer = Battle.fight(army1, army2);
+        //assert
+        assertTrue(answer);
+    }
+
+    @Test
+    @DisplayName("9. Battle: 8 Warriors vs 1 Knight. First Army should win")
+    void when8WarriorsArmyAttacks1KnightArmy_Expect_FirstArmyWins() {
+        //arrange
+        var army1 = new Army();
+        var army2 = new Army();
+        army1.addUnits(Unit.UnitType.WARRIOR, 7);
+        army2.addUnits(Warrior.class, 1);
+        //act
+        var answer = Battle.fight(army1, army2);
+        //assert
+        assertTrue(answer);
+    }
+
+    @Test
+    @DisplayName("10. Battle: 5 Defenders and 20 Warriors vs 21 Warriors and 4 Defenders. First Army shloud win")
+    void when5DefendersAnd20WarriorsArmyAttacks21WarriorsAnd4DefendersArmy_Expect_FirstArmyWins() {
+        //arrange
+        var army1 = new Army();
+        var army2=  new Army();
+        army1.addUnits(() -> new Defender(), 5);
+        army1.addUnits(() -> new Warrior(), 20);
+        army2.addUnits(() -> new Defender(), 4);
+        army2.addUnits(() -> new Warrior(), 21);
+        //act
+        var answer = Battle.fight(army1, army2);
+        //assert
+        assertTrue(answer);
+    }
+
+    @Test
+    @DisplayName("11. Battle: 5 Defenders and 10 Warriors vs 5 Warriors and 10 Defenders. Second Army shloud win")
+    void when5DefendersAnd10WarriorsArmyAttacks5WarriorsAnd10DefendersArmy_Expect_SecondArmyWins() {
+        //arrange
+        var army1 = new Army();
+        var army2=  new Army();
+        army1.addUnits(() -> new Defender(), 5);
+        army1.addUnits(() -> new Warrior(), 10);
+        army2.addUnits(() -> new Defender(), 10);
+        army2.addUnits(() -> new Warrior(), 5);
+        //act
+        var answer = Battle.fight(army1, army2);
+        //assert
+        assertFalse(answer);
+    }
+
+    @Test
+    @DisplayName("12. Battle: 5 Warriors vs 1 Warriors and 3 Defenders. Second Army shloud win")
+    void when5WarriorsArmyAttacks1WarriorAnd3DefendersArmy_Expect_SecondArmyWins() {
+        //arrange
+        var army1 = new Army();
+        var army2=  new Army();
+        army1.addUnits(() -> new Defender(), 2);
+        army1.addUnits(() -> new Warrior(), 1);
+        army1.addUnits(() -> new Defender(), 1);
+        army2.addUnits(() -> new Warrior(), 5);
+        //act
+        var answer = Battle.fight(army1, army2);
+        //assert
+        assertFalse(answer);
+    }
 
 }

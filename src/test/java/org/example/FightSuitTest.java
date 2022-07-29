@@ -28,7 +28,7 @@ class FightSuitTest {
 
     @Test
     @DisplayName("1. Fight: Warrior vs Knight. Knight should win")
-    void test01() {
+    void whenWarriorFightsKnight_Expect_KnightWins() {
         //arrange
         var carl = new Warrior();
         var jim = new Knight();
@@ -40,7 +40,7 @@ class FightSuitTest {
 
     @Test
     @DisplayName("2. Fight: Knight vs Warrior. Knight should win")
-    void test02() {
+    void whenKnightFightsWarrior_Expect_KnightWins() {
         var carl = new Knight();
         var jim = new Warrior();
 
@@ -51,7 +51,7 @@ class FightSuitTest {
 
     @Test
     @DisplayName("3. Fight: Warrior vs Warrior. First Warrior should be alive")
-    void test03() {
+    void whenWarriorFightsWarrior_Expect_FirstWarriorIsAlive() {
         var carl = new Warrior();
         var jim = new Warrior();
 
@@ -63,7 +63,7 @@ class FightSuitTest {
 
     @Test
     @DisplayName("4. Fight: Knight vs Warrior. Knight should be alive")
-    void test04() {
+    void whenKnightFightsWarrior_Expect_KnightIsAlive() {
         var carl = new Knight();
         var jim = new Warrior();
 
@@ -74,8 +74,8 @@ class FightSuitTest {
     }
 
     @Test
-    @DisplayName("5. Fight: Warrior vs Warrior. First Warrior should be alive")
-    void test05() {
+    @DisplayName("5. Fight: Warrior vs Warrior. Second Warrior should be alive")
+    void whenWarriorFightsWarrior_Expect_SecondWarriorIsAlive() {
         var carl = new Warrior();
         var jim = new Warrior();
 
@@ -87,7 +87,7 @@ class FightSuitTest {
 
     @Test
     @DisplayName("6. Fight: Warrior vs Knight. Knight should be alive")
-    void test06() {
+    void whenWarriorFightsKnight_Expect_KnightIsAlive() {
         var carl = new Warrior();
         var jim = new Knight();
 
@@ -99,7 +99,7 @@ class FightSuitTest {
 
     @Test
     @DisplayName("7. Fight: Warrior vs Knight vs Warrior. Third Warrior should win")
-    void test07() {
+    void whenWarriorFightsKnightAndKnightFightsWarrior_Expect_ThirdWarriorWins() {
         var carl = new Warrior();
         var jim = new Knight();
         var bob = new Warrior();
@@ -112,7 +112,7 @@ class FightSuitTest {
 
     @Test
     @DisplayName("8. Knight Hits Warrior, warrior health is reduced by 7")
-    void test08() {
+    void whenKnightHitsWarrior_Expect_WarriorHealthIsReducedBy7() {
         var knight =new Knight();
         var warrior =new Warrior();
 
@@ -122,5 +122,8 @@ class FightSuitTest {
         int expectedHealth = Warrior.INITIAL_HEALTH-Knight.ATTACK;
         assertEquals(expectedHealth, actualHealth);
     }
+
+
+
 
 }

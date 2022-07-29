@@ -46,20 +46,11 @@ public class Warrior implements Unit, Cloneable /*CanFight*/{
     public Warrior clone() {
         try {
             return (Warrior) super.clone();
-        } catch (CloneNotSupportedException e) {}
+        } catch (CloneNotSupportedException e) {
+
+        }
         return null;
     }
 
-
-    /*
-    public void hit(CanFight opponent){
-        opponent.receiveDamage(new SimpleDamage(getAttack()), this);
-    }
-
-    @Override
-    public void receiveDamage(Damage damage, CanFight damageDealer) {
-        setHealth(getHealth() - damage.getHitPoints());
-    }
-    */
 
 }
