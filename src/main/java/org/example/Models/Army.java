@@ -1,4 +1,4 @@
-package org.example;
+package org.example.Models;
 
 import java.util.*;
 import java.util.function.Supplier;
@@ -29,7 +29,9 @@ public class Army {
         }
     }
 
-    void addUnits(Class<? extends Unit> cls, int quantity){
+
+    //reflection example
+    public void addUnits(Class<? extends Unit> cls, int quantity){
         try {
             var constractor =  cls.getDeclaredConstructor();
             for(int i=0; i< quantity; i++) {
@@ -41,23 +43,32 @@ public class Army {
         }
     }
 
-    void addUnits(Unit.UnitType type, int quantity) {
+    // enum example
+    public void addUnits(Unit.UnitType type, int quantity) {
        for(int i=0 ;i<quantity;i++){
            troops.add((Warrior) Unit.newUnit(type));
        }
     }
 
-    void addUnits(Warrior prototype, int quantity) {
+    // cloning example
+    public void addUnits(Warrior prototype, int quantity) {
         for(int i=0 ;i<quantity;i++){
             troops.add(prototype.clone());
         }
     }
 
-    Army addUnits(Supplier<Warrior> factory, int quantity) {
+    //fluent interface
+    public Army addUnits(Supplier<Warrior> factory, int quantity) {
         for(int i=0 ;i<quantity;i++){
             troops.add(factory.get());
         }
         return this;
     }
 
+    @Override
+    public String toString() {
+        return "Army{" +
+                "troops=" + troops +
+                '}';
+    }
 }

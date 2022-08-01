@@ -1,4 +1,4 @@
-package org.example;
+package org.example.Models;
 
 public interface Unit {
     enum UnitType{

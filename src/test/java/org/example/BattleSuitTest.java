@@ -1,14 +1,19 @@
 package org.example;
 
-import org.junit.jupiter.api.Assertions;
+import org.example.Models.*;
+import org.example.Services.Battle;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import static org.junit.jupiter.api.Assertions.*;
 public class BattleSuitTest {
 
+    static Logger log = LoggerFactory.getLogger(BattleSuitTest.class);
     @Test
     void smokeTest() {
+
         var chuck = new Warrior();
         var bruce = new Warrior();
         var carl = new Knight();
@@ -48,8 +53,11 @@ public class BattleSuitTest {
         //arrange
         var army1 = new Army();
         var army2 = new Army();
-        army1.addUnits(() -> new Warrior(), 1);
+        army1.addUnits(() -> new Knight(), 1);
         army2.addUnits(() -> new Warrior(), 2);
+        if(log.isTraceEnabled()) {
+            log.trace("Army 1 {} fights Army 2 {}", army1.toString(), army2.toString());
+        }
         //act
         var answer = Battle.fight(army1, army2);
         //assert
