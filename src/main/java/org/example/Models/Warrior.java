@@ -15,6 +15,9 @@ public class Warrior implements Unit, Cloneable, IWarrior {
         this.attack=attack;
     }
 
+    public void setHealth(int health) {
+        this.health = health;
+    }
 
     public int getAttack() {
         return attack;
