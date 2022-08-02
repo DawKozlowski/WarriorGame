@@ -28,9 +28,14 @@ public class Vampire extends Warrior{
     }
 
     @Override
+    public int getAttack() {
+        return attack;
+    }
+
+    @Override
     public void hit(IWarrior opponent) {
         super.hit(opponent);
-        health += opponent.getAttack()*VAMPIRISM/100;
+        setHealth(health += opponent.getAttack()*VAMPIRISM/100);
         if(health > 40) {
             health=40;
         }

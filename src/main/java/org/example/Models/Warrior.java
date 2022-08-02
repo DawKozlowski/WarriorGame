@@ -30,7 +30,8 @@ public class Warrior implements Unit, Cloneable, IWarrior {
 
     @Override
     public void reduceHealthBasedOnDamage(int damage) {
-        health -=damage;
+        int health1 = getHealth();
+        setHealth(health1 - damage);
     }
 
     @Override

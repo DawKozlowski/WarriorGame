@@ -16,6 +16,21 @@ public class Defender extends Warrior implements HasDefense{
     }
 
     @Override
+    public int getHealth() {
+        return health;
+    }
+
+    @Override
+    public void setHealth(int health) {
+        this.health = health;
+    }
+
+    @Override
+    public int getAttack() {
+        return attack;
+    }
+
+    @Override
     public int getDefense() {
         return defence;
     }

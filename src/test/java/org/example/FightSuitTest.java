@@ -1,5 +1,6 @@
 package org.example;
 
+import org.example.Models.Defender;
 import org.example.Models.Knight;
 import org.example.Models.Vampire;
 import org.example.Models.Warrior;
@@ -152,9 +153,22 @@ class FightSuitTest {
         //act
         vampire.hit(warrior);
         int actualHealth =vampire.getHealth();
-        int expectedHealth = Vampire.INITIAL_HEALTH+Vampire.ATTACK*Vampire.VAMPIRISM/100;
+        int expectedHealth = 39;
         //assert
         assertEquals(expectedHealth, actualHealth);
     }
+
+    @Test
+    @DisplayName("7. Vampire Hits Defender, vampire should win")
+    void whenVampireHitsWarrior_Expect_VampireWins() {
+        //arrange
+        var vampire = new Vampire();
+        var defender =new Defender();
+        //act
+        var result= Battle.fight(vampire, defender);
+        //assert
+        assertEquals(false, result);
+    }
+
 
 }
