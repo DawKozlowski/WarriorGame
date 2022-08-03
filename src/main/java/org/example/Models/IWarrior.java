@@ -7,6 +7,7 @@ public interface IWarrior extends CanAttack, HasHealth {
     default void receiveHit(CanAttack damageDealer) {
          reduceHealthBasedOnDamage(damageDealer.getAttack());
     }
+
 }
 
 interface  HasHealth {
@@ -19,6 +20,7 @@ interface  HasHealth {
 
 interface CanAttack {
     int getAttack();
+
 }
 
 interface HasDefense {

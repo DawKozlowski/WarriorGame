@@ -18,56 +18,30 @@ public class BattleSuitTest {
     static Logger log = LoggerFactory.getLogger(BattleSuitTest.class);
     @Test
     void smokeTest() {
-
-        var chuck = new Warrior();
-        var bruce = new Warrior();
-        var carl = new Knight();
-        var dave = new Warrior();
-        var mark = new Warrior();
-        var bob = new Defender();
-        var mike = new Knight();
-        var rog = new Warrior();
-        var lancelot = new Defender();
-        var eric = new Vampire();
-        var adam = new Vampire();
-        var richard = new Defender();
-        var ogre = new Warrior();
-
-
-
-        assertTrue(Battle.fight(chuck, bruce));
-        assertFalse(Battle.fight(dave, carl));
-        assertTrue(chuck.isAlive());
-        assertFalse(bruce.isAlive());
-        assertTrue(carl.isAlive());
-        assertFalse(dave.isAlive());
-        assertFalse(Battle.fight(carl, mark));
-        assertFalse(carl.isAlive());
-        assertFalse(Battle.fight(bob, mike));
-        assertTrue(Battle.fight(lancelot, rog));
-        assertFalse(Battle.fight(eric, richard));
-        assertTrue(Battle.fight(ogre, adam));
-
         var myArmy = new Army();
         myArmy.addUnits(Defender::new, 2);
         myArmy.addUnits(Vampire::new, 2);
+        myArmy.addUnits(Lancer::new, 4);
         myArmy.addUnits(Warrior::new, 1);
 
         var enemyArmy = new Army();
         enemyArmy.addUnits(Warrior::new, 2);
+        enemyArmy.addUnits(Lancer::new, 2);
         enemyArmy.addUnits(Defender::new, 2);
         enemyArmy.addUnits(Vampire::new, 3);
 
         var army3 = new Army();
         army3.addUnits(Warrior::new, 1);
+        army3.addUnits(Lancer::new, 1);
         army3.addUnits(Defender::new, 4);
 
         var army4 = new Army();
         army4.addUnits(Vampire::new, 3);
         army4.addUnits(Warrior::new, 2);
+        army4.addUnits(Lancer::new, 2);
 
-        assertFalse(Battle.fight(myArmy, enemyArmy));
-        assertTrue(Battle.fight(army3, army4));
+        assertTrue(Battle.fight(myArmy, enemyArmy));
+        assertFalse(Battle.fight(army3, army4));
     }
 
     @ParameterizedTest(name = "[{index} {0} is fighting against {1} expecting {2}]")
@@ -207,7 +181,38 @@ public class BattleSuitTest {
                                 .addUnits(Warrior::new, 4)
                                 .addUnits(Defender::new, 4)
                                 .addUnits(Vampire::new, 13),
-                        true)
+                        true),
+                Arguments.of(
+                        new Army()
+                                .addUnits(Lancer::new, 5)
+                                .addUnits(Vampire::new, 3)
+                                .addUnits(Warrior::new, 4)
+                                .addUnits(Defender::new, 2),
+                        new Army()
+                                .addUnits(Warrior::new, 4)
+                                .addUnits(Defender::new, 4)
+                                .addUnits(Vampire::new, 6)
+                                .addUnits(Lancer::new, 5),
+                        false),
+                Arguments.of(
+                        new Army()
+                                .addUnits(Lancer::new, 7)
+                                .addUnits(Vampire::new, 3)
+                                .addUnits(Warrior::new, 4)
+                                .addUnits(Defender::new, 2),
+                        new Army()
+                                .addUnits(Warrior::new, 4)
+                                .addUnits(Defender::new, 4)
+                                .addUnits(Vampire::new, 6)
+                                .addUnits(Lancer::new, 4),
+                        true),
+                Arguments.of(
+                        new Army()
+                                .addUnits(Warrior::new, 2),
+                        new Army()
+                                .addUnits(Lancer::new, 1)
+                                .addUnits(Warrior::new, 1),
+                        false)
         );
     }
 

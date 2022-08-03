@@ -18,6 +18,7 @@ public class Vampire extends Warrior{
         this.attack=ATTACK;
     }
 
+    @Override
     public void setHealth(int health) {
         this.health = health;
     }

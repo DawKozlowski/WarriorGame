@@ -6,11 +6,11 @@ import java.util.function.Supplier;
 public class Army {
     private List<Warrior> troops = new ArrayList<>();
 
-    public Iterator<Warrior> firstAlive() {
+    public Iterator<IWarrior> firstAlive() {
         return new FirstAliveIterator();
     }
 
-    private class FirstAliveIterator implements Iterator<Warrior> {
+    private class FirstAliveIterator implements Iterator<IWarrior> {
         int cursor = 0;
         @Override
         public boolean hasNext() {

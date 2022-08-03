@@ -1,9 +1,6 @@
 package org.example;
 
-import org.example.Models.Defender;
-import org.example.Models.Knight;
-import org.example.Models.Vampire;
-import org.example.Models.Warrior;
+import org.example.Models.*;
 import org.example.Services.Battle;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -23,17 +20,32 @@ class FightSuitTest {
         var bruce = new Warrior();
         var carl = new Knight();
         var dave = new Warrior();
+        var mark = new Warrior();
+        var bob = new Defender();
+        var mike = new Knight();
+        var rog = new Warrior();
+        var lancelot = new Defender();
+        var eric = new Vampire();
+        var adam = new Vampire();
+        var richard = new Defender();
+        var ogre = new Warrior();
+        var freelancer = new Lancer();
+        var vampire = new Vampire();
 
-        var res1= Battle.fight(chuck, bruce);
-        Assertions.assertTrue(res1);
-
-        var res2=Battle.fight(dave, carl);
-        assertFalse(res2);
-
+        assertTrue(Battle.fight(chuck, bruce));
+        assertFalse(Battle.fight(dave, carl));
         assertTrue(chuck.isAlive());
         assertFalse(bruce.isAlive());
         assertTrue(carl.isAlive());
         assertFalse(dave.isAlive());
+        assertFalse(Battle.fight(carl, mark));
+        assertFalse(carl.isAlive());
+        assertFalse(Battle.fight(bob, mike));
+        assertTrue(Battle.fight(lancelot, rog));
+        assertFalse(Battle.fight(eric, richard));
+        assertTrue(Battle.fight(ogre, adam));
+        assertTrue(Battle.fight(freelancer, vampire));
+        assertTrue(freelancer.isAlive());
     }
 
     @ParameterizedTest(name = "[{index} {0} is fighting against {1} expecting {2}]")
@@ -48,7 +60,9 @@ class FightSuitTest {
                 Arguments.of(new Warrior(), new Warrior(), true),
                 Arguments.of(new Warrior(), new Knight(), false),
                 Arguments.of(new Knight(), new Warrior(), true),
-                Arguments.of(new Knight(), new Knight(), true)
+                Arguments.of(new Knight(), new Knight(), true),
+                Arguments.of(new Lancer(), new Warrior(), true),
+                Arguments.of(new Vampire(), new Defender(), false)
         );
     }
 
@@ -151,24 +165,14 @@ class FightSuitTest {
         vampire.setHealth(37);
         warrior.setHealth(1);
         //act
+        int expectedHealth = vampire.getHealth() + Warrior.ATTACK*Vampire.VAMPIRISM/100;
         vampire.hit(warrior);
         int actualHealth =vampire.getHealth();
-        int expectedHealth = 39;
         //assert
         assertEquals(expectedHealth, actualHealth);
     }
 
-    @Test
-    @DisplayName("7. Vampire Hits Defender, vampire should win")
-    void whenVampireHitsWarrior_Expect_VampireWins() {
-        //arrange
-        var vampire = new Vampire();
-        var defender =new Defender();
-        //act
-        var result= Battle.fight(vampire, defender);
-        //assert
-        assertEquals(false, result);
-    }
+
 
 
 }
