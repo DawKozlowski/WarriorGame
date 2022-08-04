@@ -1,6 +1,6 @@
 package org.example.Models;
 
-public class Warrior implements Unit, Cloneable, IWarrior{
+public class Warrior implements IWarrior{
     public static final int ATTACK = 5;
     public static final int INITIAL_HEALTH  = 50;
     private int health;
@@ -54,15 +54,6 @@ public class Warrior implements Unit, Cloneable, IWarrior{
         this.nextBehind=behind;
     }
 
-    @Override
-    public Warrior clone() {
-        try {
-            return (Warrior) super.clone();
-        } catch (CloneNotSupportedException e) {
-
-        }
-        return null;
-    }
 
     @Override
     public String toString() {

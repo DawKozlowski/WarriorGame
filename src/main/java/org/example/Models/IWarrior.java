@@ -11,13 +11,12 @@ public interface IWarrior extends CanAttack, HasHealth{
 
 }
 
-record SimpleDamage (int hitPoints, IWarrior damageDealer) implements IDamage{};
-
 interface IDamage {
     int hitPoints();
     IWarrior damageDealer();
 }
 
+record SimpleDamage (int hitPoints, IWarrior damageDealer) implements IDamage{};
 
 interface  HasHealth {
     int getHealth();
@@ -34,3 +33,4 @@ interface CanAttack {
 interface HasDefense {
     int getDefense();
 }
+

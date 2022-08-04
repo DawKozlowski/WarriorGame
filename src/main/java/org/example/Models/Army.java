@@ -30,33 +30,6 @@ public class Army {
     }
 
 
-    //reflection example
-    public void addUnits(Class<? extends Unit> cls, int quantity){
-        try {
-            var constractor =  cls.getDeclaredConstructor();
-            for(int i=0; i< quantity; i++) {
-                var o = constractor.newInstance();
-                troops.add((Warrior) o);
-            }
-        } catch (ReflectiveOperationException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    // enum example
-    public void addUnits(Unit.UnitType type, int quantity) {
-       for(int i=0 ;i<quantity;i++){
-           troops.add((Warrior) Unit.newUnit(type));
-       }
-    }
-
-    // cloning example
-    public void addUnits(Warrior prototype, int quantity) {
-        for(int i=0 ;i<quantity;i++){
-            troops.add(prototype.clone());
-        }
-    }
-
     //fluent interface
     public Army addUnits(Supplier<IWarrior> factory, int quantity) {
         for(int i=0 ;i<quantity;i++){
