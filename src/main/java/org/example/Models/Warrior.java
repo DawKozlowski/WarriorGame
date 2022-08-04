@@ -1,10 +1,12 @@
 package org.example.Models;
 
-public class Warrior implements Unit, Cloneable, IWarrior {
+public class Warrior implements Unit, Cloneable, IWarrior{
     public static final int ATTACK = 5;
     public static final int INITIAL_HEALTH  = 50;
     private int health;
     private int attack;
+
+    private IWarrior nextBehind;
 
     public Warrior() {
         this(INITIAL_HEALTH, ATTACK);
@@ -17,6 +19,9 @@ public class Warrior implements Unit, Cloneable, IWarrior {
 
     public void setHealth(int health) {
         this.health = health;
+        if(health>INITIAL_HEALTH) {
+            this.health = INITIAL_HEALTH;
+        }
     }
 
     public int getAttack() {
@@ -28,10 +33,25 @@ public class Warrior implements Unit, Cloneable, IWarrior {
         return health;
     }
 
+
     @Override
-    public void reduceHealthBasedOnDamage(int damage) {
-        int health1 = getHealth();
-        setHealth(health1 - damage);
+    public void hit(IWarrior opponent) {
+        opponent.receiveHit(new SimpleDamage(getAttack(), this));
+    }
+
+    @Override
+    public void receiveHit(IDamage damageDealer) {
+        setHealth(getHealth()- damageDealer.hitPoints());
+    }
+
+    @Override
+    public IWarrior getBehind() {
+        return nextBehind;
+    }
+
+    @Override
+    public void setBehind(IWarrior behind) {
+        this.nextBehind=behind;
     }
 
     @Override

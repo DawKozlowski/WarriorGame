@@ -22,7 +22,11 @@ public class Defender extends Warrior implements HasDefense{
 
     @Override
     public void setHealth(int health) {
+        //llgic here needed
         this.health = health;
+        if(health>INITIAL_HEALTH) {
+            this.health = INITIAL_HEALTH;
+        }
     }
 
     @Override
@@ -36,10 +40,8 @@ public class Defender extends Warrior implements HasDefense{
     }
 
     @Override
-    public void receiveHit(CanAttack damageDealer) {
-        super.receiveHit(() ->
-            Math.max(0, damageDealer.getAttack() - getDefense())
-        );
+    public void receiveHit(IDamage damageDealer) {
+        setHealth(getHealth() - (damageDealer.hitPoints()-getDefense()));
     }
 
     @Override

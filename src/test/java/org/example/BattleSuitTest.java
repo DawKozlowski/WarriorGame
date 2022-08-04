@@ -14,7 +14,6 @@ import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.*;
 public class BattleSuitTest {
-
     static Logger log = LoggerFactory.getLogger(BattleSuitTest.class);
     @Test
     void smokeTest() {
@@ -33,11 +32,11 @@ public class BattleSuitTest {
         var army3 = new Army();
         army3.addUnits(Warrior::new, 1);
         army3.addUnits(Lancer::new, 1);
-        army3.addUnits(Defender::new, 4);
+        army3.addUnits(Defender::new, 2);
 
         var army4 = new Army();
         army4.addUnits(Vampire::new, 3);
-        army4.addUnits(Warrior::new, 2);
+        army4.addUnits(Warrior::new, 1);
         army4.addUnits(Lancer::new, 2);
 
         assertTrue(Battle.fight(myArmy, enemyArmy));
@@ -208,10 +207,10 @@ public class BattleSuitTest {
                         true),
                 Arguments.of(
                         new Army()
-                                .addUnits(Warrior::new, 2),
+                                .addUnits(Lancer::new, 1),
                         new Army()
                                 .addUnits(Lancer::new, 1)
-                                .addUnits(Warrior::new, 1),
+                                .addUnits(Knight::new, 1),
                         false)
         );
     }

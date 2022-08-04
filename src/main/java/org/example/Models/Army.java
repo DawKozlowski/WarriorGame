@@ -4,7 +4,7 @@ import java.util.*;
 import java.util.function.Supplier;
 
 public class Army {
-    private List<Warrior> troops = new ArrayList<>();
+    private List<IWarrior> troops = new ArrayList<>();
 
     public Iterator<IWarrior> firstAlive() {
         return new FirstAliveIterator();
@@ -21,7 +21,7 @@ public class Army {
         }
 
         @Override
-        public Warrior next() {
+        public IWarrior next() {
             if(!hasNext()){
                 throw  new NoSuchElementException();
             }
@@ -58,9 +58,13 @@ public class Army {
     }
 
     //fluent interface
-    public Army addUnits(Supplier<Warrior> factory, int quantity) {
+    public Army addUnits(Supplier<IWarrior> factory, int quantity) {
         for(int i=0 ;i<quantity;i++){
-            troops.add(factory.get());
+            IWarrior next = factory.get();
+            if(!troops.isEmpty()) {
+                troops.get(troops.size() - 1).setBehind(next);
+            }
+            troops.add(next);
         }
         return this;
     }

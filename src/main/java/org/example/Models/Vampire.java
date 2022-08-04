@@ -21,6 +21,9 @@ public class Vampire extends Warrior{
     @Override
     public void setHealth(int health) {
         this.health = health;
+        if(health>INITIAL_HEALTH) {
+            this.health = INITIAL_HEALTH;
+        }
     }
 
     @Override
@@ -36,10 +39,7 @@ public class Vampire extends Warrior{
     @Override
     public void hit(IWarrior opponent) {
         super.hit(opponent);
-        setHealth(health += opponent.getAttack()*VAMPIRISM/100);
-        if(health > 40) {
-            health=40;
-        }
+        setHealth(getHealth() + opponent.getAttack()*VAMPIRISM/100);
     }
 
     @Override

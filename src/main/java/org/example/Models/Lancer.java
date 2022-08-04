@@ -31,6 +31,19 @@ public class Lancer extends Warrior{
     }
 
     @Override
+    public void hit(IWarrior opponent) {
+        int healthBefore = opponent.getHealth();
+        super.hit(opponent);
+        int damageDealtToTheFirst =  healthBefore - opponent.getHealth();
+        IWarrior nextBehind = opponent.getBehind();
+        if(nextBehind != null){
+            int damageToSecond = damageDealtToTheFirst * 50 / 100;
+            nextBehind.receiveHit(new SimpleDamage(damageToSecond, this));
+        }
+    }
+
+
+    @Override
     public String toString() {
         return "Lancer{" +
                 "health=" + health +

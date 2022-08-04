@@ -1,18 +1,26 @@
 package org.example.Models;
 
-public interface IWarrior extends CanAttack, HasHealth {
-    default void hit(IWarrior opponent) {
-        opponent.receiveHit(this);
-    }
-    default void receiveHit(CanAttack damageDealer) {
-         reduceHealthBasedOnDamage(damageDealer.getAttack());
-    }
+public interface IWarrior extends CanAttack, HasHealth{
+    void hit(IWarrior opponent);
+
+    void receiveHit(IDamage damageDealer);
+
+    IWarrior getBehind();
+
+    void setBehind(IWarrior behind);
 
 }
 
+record SimpleDamage (int hitPoints, IWarrior damageDealer) implements IDamage{};
+
+interface IDamage {
+    int hitPoints();
+    IWarrior damageDealer();
+}
+
+
 interface  HasHealth {
     int getHealth();
-    void reduceHealthBasedOnDamage(int damage);
     default boolean isAlive() {
        return  getHealth() > 0;
     }
