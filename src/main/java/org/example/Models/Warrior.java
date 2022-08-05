@@ -18,10 +18,7 @@ public class Warrior implements IWarrior{
     }
 
     public void setHealth(int health) {
-        this.health = health;
-        if(health>INITIAL_HEALTH) {
-            this.health = INITIAL_HEALTH;
-        }
+        this.health = Math.min(health, INITIAL_HEALTH);
     }
 
     public int getAttack() {

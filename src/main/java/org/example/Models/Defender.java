@@ -22,11 +22,7 @@ public class Defender extends Warrior implements HasDefense{
 
     @Override
     public void setHealth(int health) {
-        //llgic here needed
-        this.health = health;
-        if(health>INITIAL_HEALTH) {
-            this.health = INITIAL_HEALTH;
-        }
+        this.health = Math.min(health, INITIAL_HEALTH);
     }
 
     @Override
