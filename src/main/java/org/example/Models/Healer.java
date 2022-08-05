@@ -34,6 +34,8 @@ public class Healer extends Warrior {
         warrior.setHealth(warrior.getHealth() + 2);
     }
 
+    @Override
+    public void hit(IWarrior opponent) {}
 
     @Override
     public void processCommand(ICommand command, IWarrior sender) {
