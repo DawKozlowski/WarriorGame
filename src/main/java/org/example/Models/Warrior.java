@@ -37,6 +37,7 @@ public class Warrior implements IWarrior{
     @Override
     public void hit(IWarrior opponent) {
         opponent.receiveHit(new SimpleDamage(getAttack(), this));
+        processCommand(new HealCommand(), this);
     }
 
     @Override

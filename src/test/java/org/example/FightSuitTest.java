@@ -31,6 +31,7 @@ class FightSuitTest {
         var ogre = new Warrior();
         var freelancer = new Lancer();
         var vampire = new Vampire();
+        var priest = new Healer();
 
         assertTrue(Battle.fight(chuck, bruce));
         assertFalse(Battle.fight(dave, carl));
@@ -46,6 +47,9 @@ class FightSuitTest {
         assertTrue(Battle.fight(ogre, adam));
         assertTrue(Battle.fight(freelancer, vampire));
         assertTrue(freelancer.isAlive());
+        assertEquals(14, freelancer.getHealth());
+        priest.heal(freelancer);
+        assertEquals(16, freelancer.getHealth());
     }
 
     @ParameterizedTest(name = "[{index} {0} is fighting against {1} expecting {2}]")
