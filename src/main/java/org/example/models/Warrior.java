@@ -1,11 +1,10 @@
-package org.example.Models;
+package org.example.models;
 
 public class Warrior implements IWarrior{
     public static final int ATTACK = 5;
     public static final int INITIAL_HEALTH  = 50;
     private int health;
     private int attack;
-
     private IWarrior nextBehind;
 
     public Warrior() {
@@ -21,25 +20,12 @@ public class Warrior implements IWarrior{
         this.health = Math.min(health, INITIAL_HEALTH);
     }
 
-    public int getAttack() {
-        return attack;
-    }
-
-
     public int getHealth() {
         return health;
     }
 
-
-    @Override
-    public void hit(IWarrior opponent) {
-        opponent.receiveHit(new SimpleDamage(getAttack(), this));
-        processCommand(new HealCommand(), this);
-    }
-
-    @Override
-    public void receiveHit(IDamage damageDealer) {
-        setHealth(getHealth()- damageDealer.hitPoints());
+    public int getAttack() {
+        return attack;
     }
 
     @Override
@@ -51,7 +37,6 @@ public class Warrior implements IWarrior{
     public void setBehind(IWarrior behind) {
         this.nextBehind=behind;
     }
-
 
     @Override
     public String toString() {

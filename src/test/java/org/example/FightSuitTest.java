@@ -1,8 +1,7 @@
 package org.example;
 
-import org.example.Models.*;
+import org.example.models.*;
 import org.example.Services.Battle;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;

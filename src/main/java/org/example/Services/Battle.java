@@ -1,8 +1,7 @@
 package org.example.Services;
 
-import org.example.Models.Army;
-import org.example.Models.IWarrior;
-import org.example.Models.Warrior;
+import org.example.models.Army;
+import org.example.models.IWarrior;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

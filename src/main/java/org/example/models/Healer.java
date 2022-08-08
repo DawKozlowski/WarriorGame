@@ -1,4 +1,4 @@
-package org.example.Models;
+package org.example.models;
 
 public class Healer extends Warrior {
     public static final int ATTACK = 0;

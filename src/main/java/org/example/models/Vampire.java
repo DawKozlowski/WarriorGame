@@ -1,4 +1,4 @@
-package org.example.Models;
+package org.example.models;
 
 public class Vampire extends Warrior{
     public static final int ATTACK = 4;
@@ -16,11 +16,6 @@ public class Vampire extends Warrior{
         this.vampirism=VAMPIRISM;
         this.health=INITIAL_HEALTH;
         this.attack=ATTACK;
-    }
-
-    @Override
-    public void setHealth(int health) {
-        this.health = Math.min(health, INITIAL_HEALTH);
     }
 
     @Override

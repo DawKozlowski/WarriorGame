@@ -1,4 +1,4 @@
-package org.example.Models;
+package org.example.models;
 
 public class Defender extends Warrior implements HasDefense{
     public static final int ATTACK = 3;

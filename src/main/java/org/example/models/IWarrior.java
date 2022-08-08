@@ -1,9 +1,15 @@
-package org.example.Models;
+package org.example.models;
 
 public interface IWarrior extends CanAttack, HasHealth{
-    void hit(IWarrior opponent);
 
-    void receiveHit(IDamage damageDealer);
+    default void hit(IWarrior opponent) {
+        opponent.receiveHit(new SimpleDamage(getAttack(), this));
+        processCommand(new HealCommand(), this);
+    }
+
+    default void receiveHit(IDamage damageDealer) {
+        setHealth(getHealth()- damageDealer.hitPoints());
+    }
 
     default void processCommand(ICommand command, IWarrior sender) {
         var behind = getBehind();
@@ -42,7 +48,6 @@ interface  HasHealth {
 
 interface CanAttack {
     int getAttack();
-
 }
 
 interface HasDefense {

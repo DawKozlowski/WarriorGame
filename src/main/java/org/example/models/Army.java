@@ -1,4 +1,4 @@
-package org.example.Models;
+package org.example.models;
 
 import java.util.*;
 import java.util.function.Supplier;
