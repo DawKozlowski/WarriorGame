@@ -13,5 +13,5 @@
     </root>
 
     <logger name="org.example.BattleSuitTest" level="trace"/>
-    <logger name="org.example.services.Battle" level="trace"/>
+    <logger name="org.example.Services.Battle" level="trace"/>
 </configuration>

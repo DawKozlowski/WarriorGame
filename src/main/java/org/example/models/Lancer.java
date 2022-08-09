@@ -35,8 +35,8 @@ public class Lancer extends Warrior{
         int healthBefore = opponent.getHealth();
         super.hit(opponent);
         int damageDealtToTheFirst =  healthBefore - opponent.getHealth();
-        IWarrior nextBehind = opponent.getBehind();
-        if(nextBehind != null){
+        if(opponent.getBehind().isPresent()){
+            IWarrior nextBehind = opponent.getBehind().get();
             int damageToSecond = damageDealtToTheFirst * 50 / 100;
             nextBehind.receiveHit(new SimpleDamage(damageToSecond, this));
         }

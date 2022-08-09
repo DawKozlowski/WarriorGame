@@ -28,9 +28,11 @@ public class Battle {
 
 
     public static boolean fight(Army army1, Army army2) {
+        army1.lineUp();
+        army2.lineUp();
+
         var it1 = army1.firstAlive();
         var it2 = army2.firstAlive();
-
 
         while(it1.hasNext() && it2.hasNext()) {
             fight(it1.next(), it2.next());
@@ -39,6 +41,17 @@ public class Battle {
         return  it1.hasNext();
     }
 
+    public static boolean straightFight(Army army1, Army army2) {
+        while (army1.isAlive() && army2.isAlive()) {
 
+            for (int i = 0; i < Math.min(army1.size(), army2.size()); i++) {
+                fight(army1.getWarrior(i), army2.getWarrior(i));
+            }
+
+            army1.removeDeadWarrior();
+            army2.removeDeadWarrior();
+        }
+        return army1.isAlive();
+    }
 
 }

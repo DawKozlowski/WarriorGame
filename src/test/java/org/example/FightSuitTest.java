@@ -66,6 +66,8 @@ class FightSuitTest {
                 Arguments.of(new Knight(), new Knight(), true),
                 Arguments.of(new Lancer(), new Warrior(), true),
                 Arguments.of(new Lancer(), new Knight(), false),
+                Arguments.of(new Defender(), new Vampire(), true),
+                Arguments.of(new Vampire(), new Vampire(), true),
                 Arguments.of(new Vampire(), new Defender(), false)
         );
     }

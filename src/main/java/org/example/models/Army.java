@@ -29,14 +29,33 @@ public class Army {
         }
     }
 
+    public int size() {
+        return troops.size();
+    }
+
+    public IWarrior getWarrior(int index) {
+        return troops.get(index);
+    }
+
+    public void removeDeadWarrior() {
+        troops.removeIf(IWarrior -> !IWarrior.isAlive());
+    }
+
+    public boolean isAlive() {
+        return !troops.isEmpty();
+    }
+
+    public Army lineUp() {
+        for (int i = 1; i < troops.size(); i++) {
+            troops.get(i - 1).setBehind(troops.get(i));
+        }
+        return this;
+    }
 
     //fluent interface
     public Army addUnits(Supplier<IWarrior> factory, int quantity) {
         for(int i=0 ;i<quantity;i++){
             IWarrior next = factory.get();
-            if(!troops.isEmpty()) {
-                troops.get(troops.size() - 1).setBehind(next);
-            }
             troops.add(next);
         }
         return this;

@@ -19,6 +19,11 @@ public class Vampire extends Warrior{
     }
 
     @Override
+    public void setHealth(int health) {
+        this.health = Math.min(health, INITIAL_HEALTH);
+    }
+
+    @Override
     public int getHealth() {
         return health;
     }

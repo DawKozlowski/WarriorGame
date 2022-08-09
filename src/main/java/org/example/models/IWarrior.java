@@ -1,24 +1,18 @@
 package org.example.models;
 
+import java.util.Optional;
+
 public interface IWarrior extends CanAttack, HasHealth{
 
-    default void hit(IWarrior opponent) {
-        opponent.receiveHit(new SimpleDamage(getAttack(), this));
-        processCommand(new HealCommand(), this);
-    }
+    void hit(IWarrior opponent);
 
-    default void receiveHit(IDamage damageDealer) {
-        setHealth(getHealth()- damageDealer.hitPoints());
-    }
+    void receiveHit(IDamage damageDealer);
 
     default void processCommand(ICommand command, IWarrior sender) {
-        var behind = getBehind();
-        if (behind != null) {
-            behind.processCommand(command, this);
-        }
+        getBehind().ifPresent(IWarrior -> IWarrior.processCommand(command, this));
     }
 
-    IWarrior getBehind();
+    Optional<IWarrior> getBehind();
 
     void setBehind(IWarrior behind);
 
