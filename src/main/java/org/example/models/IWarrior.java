@@ -1,5 +1,8 @@
 package org.example.models;
 
+import org.example.models.weapons.IWeapon;
+
+
 import java.util.Optional;
 
 public interface IWarrior extends CanAttack, HasHealth{
@@ -11,6 +14,8 @@ public interface IWarrior extends CanAttack, HasHealth{
     default void processCommand(ICommand command, IWarrior sender) {
         getBehind().ifPresent(IWarrior -> IWarrior.processCommand(command, this));
     }
+
+    public IWarrior equipWeapon(IWeapon weapon);
 
     Optional<IWarrior> getBehind();
 
@@ -42,6 +47,8 @@ interface  HasHealth {
 
 interface CanAttack {
     int getAttack();
+
+    void setAttack(int attack);
 }
 
 interface HasDefense {

@@ -1,4 +1,4 @@
-package org.example.Services;
+package org.example.services;
 
 import org.example.models.Army;
 import org.example.models.IWarrior;

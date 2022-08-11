@@ -1,5 +1,8 @@
 package org.example.models;
 
+import org.example.models.weapons.IWeapon;
+import org.example.models.weapons.Weapon;
+
 public class Lancer extends Warrior{
 
     public static final int ATTACK = 6;
@@ -9,10 +12,13 @@ public class Lancer extends Warrior{
 
     private int attack;
 
+    private int newInitialHealth;
+
     public Lancer(){
         super(INITIAL_HEALTH, ATTACK);
         this.health=INITIAL_HEALTH;
         this.attack=ATTACK;
+        this.newInitialHealth=INITIAL_HEALTH;
     }
 
     @Override
@@ -22,12 +28,17 @@ public class Lancer extends Warrior{
 
     @Override
     public void setHealth(int health) {
-        this.health = health;
+        this.health = Math.min(health, newInitialHealth);
     }
 
     @Override
     public int getAttack() {
         return attack;
+    }
+
+    @Override
+    public void setAttack(int attack) {
+        this.attack = attack;
     }
 
     @Override
@@ -42,6 +53,12 @@ public class Lancer extends Warrior{
         }
     }
 
+    public IWarrior equipWeapon(IWeapon weapon) {
+        newInitialHealth+=weapon.getHealth();
+        setHealth(getHealth()+weapon.getHealth());
+        setAttack(getAttack()+ weapon.getAttack());
+        return this;
+    }
 
     @Override
     public String toString() {

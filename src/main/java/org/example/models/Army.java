@@ -1,5 +1,8 @@
 package org.example.models;
 
+import org.example.models.weapons.IWeapon;
+import org.example.models.weapons.Weapon;
+
 import java.util.*;
 import java.util.function.Supplier;
 
@@ -58,6 +61,11 @@ public class Army {
             IWarrior next = factory.get();
             troops.add(next);
         }
+        return this;
+    }
+
+    public Army equipWarriorAtPosition(int position, IWeapon weapon){
+        getWarrior(position).equipWeapon(weapon);
         return this;
     }
 
