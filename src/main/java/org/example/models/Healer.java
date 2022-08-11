@@ -32,7 +32,7 @@ public class Healer extends Warrior {
 
     @Override
     public void setHealth(int health) {
-        this.health = health;
+        this.health = Math.min(health, newInitialHealth);
     }
 
     @Override
