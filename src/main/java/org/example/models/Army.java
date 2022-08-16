@@ -1,5 +1,7 @@
 package org.example.models;
 
+import org.example.models.strategies.Strategy;
+import org.example.models.strategies.WarlordStartegy;
 import org.example.models.weapons.IWeapon;
 import org.example.models.weapons.Weapon;
 
@@ -8,6 +10,17 @@ import java.util.function.Supplier;
 
 public class Army {
     private List<IWarrior> troops = new ArrayList<>();
+    private Warlord warlord;
+    private Strategy strategy=new WarlordStartegy();
+
+
+    public List<IWarrior> getTroops() {
+        return troops;
+    }
+
+    public void setTroops(List<IWarrior> troops) {
+        this.troops = troops;
+    }
 
     public Iterator<IWarrior> firstAlive() {
         return new FirstAliveIterator();
@@ -55,8 +68,14 @@ public class Army {
         return this;
     }
 
-    //fluent interface
     public Army addUnits(Supplier<IWarrior> factory, int quantity) {
+        if(factory.get() instanceof Warlord) {
+            if (troops.stream().noneMatch(Warlord.class::isInstance)) {
+                troops.add(factory.get());
+            }
+            return this;
+        }
+
         for(int i=0 ;i<quantity;i++){
             IWarrior next = factory.get();
             troops.add(next);
@@ -68,6 +87,17 @@ public class Army {
         getWarrior(position).equipWeapon(weapon);
         return this;
     }
+
+   public IWarrior unitAtPosition(int position) {
+        return troops.get(position);
+   }
+
+    public void moveUnits() {
+        if (troops.stream().filter(HasHealth::isAlive).anyMatch(Warlord.class::isInstance)) {
+            strategy.moveUnits(this);
+        }
+    }
+
 
     @Override
     public String toString() {

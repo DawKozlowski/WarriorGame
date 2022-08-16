@@ -1,11 +1,16 @@
 package org.example.models;
 
+import org.example.models.Defender;
+import org.example.models.strategies.Strategy;
+import org.example.models.strategies.WarlordStartegy;
 import org.example.models.weapons.IWeapon;
-import org.example.models.weapons.Weapon;
 
-public class Defender extends Warrior implements HasDefense{
-    public static final int ATTACK = 3;
-    public static final int INITIAL_HEALTH  = 60;
+import java.util.Collection;
+
+public class Warlord extends Defender {
+
+    public static final int ATTACK = 4;
+    public static final int INITIAL_HEALTH  = 100;
     public static final int DEFENCE = 2;
 
     private int health;
@@ -13,12 +18,8 @@ public class Defender extends Warrior implements HasDefense{
     private int defence;
     private int newInitialHealth;
 
-    public Defender() {
-        this(INITIAL_HEALTH, ATTACK);
-    }
-
-    public Defender(int health, int attack){
-        super(health, attack);
+    public Warlord(){
+        super(INITIAL_HEALTH, ATTACK);
         this.defence=DEFENCE;
         this.health=INITIAL_HEALTH;
         this.attack=ATTACK;
@@ -55,21 +56,8 @@ public class Defender extends Warrior implements HasDefense{
     }
 
     @Override
-    public void receiveHit(IDamage damageDealer) {
-        setHealth(getHealth() - (damageDealer.hitPoints()-getDefense()));
-    }
-
-    public IWarrior equipWeapon(IWeapon weapon) {
-        newInitialHealth+= weapon.getHealth();
-        setDefence(getDefense()+ weapon.getDefense());
-        super.equipWeapon(weapon);
-
-        return this;
-    }
-
-    @Override
     public String toString() {
-        return "Defender{" +
+        return "Warlord{" +
                 "health=" + health +
                 ", attack=" + attack +
                 ", defence=" + defence +
