@@ -88,10 +88,6 @@ public class Army {
         return this;
     }
 
-   public IWarrior unitAtPosition(int position) {
-        return troops.get(position);
-   }
-
     public void moveUnits() {
         if (troops.stream().filter(HasHealth::isAlive).anyMatch(Warlord.class::isInstance)) {
             strategy.moveUnits(this);

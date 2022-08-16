@@ -32,13 +32,13 @@ public class WarlordSuitTest {
         enemyArmy.moveUnits();
 
 // you can provide any other interface for testing the order
-        assertEquals(Lancer.class, myArmy.unitAtPosition(0).getClass());
-        assertEquals(Healer.class, myArmy.unitAtPosition(1).getClass());
+        assertEquals(Lancer.class, myArmy.getWarrior(0).getClass());
+        assertEquals(Healer.class, myArmy.getWarrior(1).getClass());
 // negative index means from the last position, so -1 == last
-        assertEquals(Warlord.class, myArmy.unitAtPosition(myArmy.size() - 1).getClass());
-        assertEquals(Vampire.class, enemyArmy.unitAtPosition(0).getClass());
-        assertEquals(Warlord.class, enemyArmy.unitAtPosition(enemyArmy.size() - 1).getClass());
-        assertEquals(Knight.class, enemyArmy.unitAtPosition(enemyArmy.size() - 2).getClass());
+        assertEquals(Warlord.class, myArmy.getWarrior(myArmy.size() - 1).getClass());
+        assertEquals(Vampire.class, enemyArmy.getWarrior(0).getClass());
+        assertEquals(Warlord.class, enemyArmy.getWarrior(enemyArmy.size() - 1).getClass());
+        assertEquals(Knight.class, enemyArmy.getWarrior(enemyArmy.size() - 2).getClass());
 
 //6, not 8, because only 1 Warlord per army could be
         assert enemyArmy.size() == 6;
