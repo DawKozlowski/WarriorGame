@@ -1,22 +1,18 @@
 package org.example;
 
 import org.example.models.*;
-import org.example.models.weapons.Weapon;
-import org.example.services.Battle;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.*;
 
-public class GranualTest {
+class GranualTest {
 
     class Rookie extends Warrior {
         @Override
-        public int getAttack() {
+        public int getBombAttack() {
             return 1;
         }
     }
-
 
     @Test
     @DisplayName("1. Rookie hits Defender. Defenders Health should not increase")
@@ -77,7 +73,4 @@ public class GranualTest {
         //assert
         assertEquals(expectedHealthAfterHeal, warriorHealthAfterHeal);
     }
-
-
-
 }

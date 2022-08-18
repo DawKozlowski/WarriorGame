@@ -1,22 +1,19 @@
 package org.example.models;
 
 import org.example.models.weapons.IWeapon;
-import org.example.models.weapons.Weapon;
 
 public class Knight extends Warrior{
 
-    public static final int ATTACK = 7;
+    public static final int INITIAL_ATTACK = 7;
     public static final int INITIAL_HEALTH  = 50;
-
     private int health;
-
     private int attack;
     private int newInitialHealth;
 
     public Knight(){
-         super(INITIAL_HEALTH, ATTACK);
+         super(INITIAL_HEALTH, INITIAL_ATTACK);
          this.health=INITIAL_HEALTH;
-         this.attack=ATTACK;
+         this.attack= INITIAL_ATTACK;
          this.newInitialHealth=INITIAL_HEALTH;
      }
 
@@ -31,15 +28,16 @@ public class Knight extends Warrior{
     }
 
     @Override
-    public int getAttack() {
+    public int getBombAttack() {
         return attack;
     }
 
     @Override
-    public void setAttack(int attack) {
-        this.attack = attack;
+    public void setBombAttack(int bombAttack) {
+        this.attack = bombAttack;
     }
 
+    @Override
     public IWarrior equipWeapon(IWeapon weapon) {
         newInitialHealth+=weapon.getHealth();
         super.equipWeapon(weapon);

@@ -10,9 +10,7 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import java.util.stream.Stream;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 class Rookie extends Warrior {
@@ -20,13 +18,12 @@ class Rookie extends Warrior {
     }
 
     @Override
-    public int getAttack() {
+    public int getBombAttack() {
         return 1;
     }
 }
 
-public class WeaponSuitTest {
-
+class WeaponSuitTest {
 
 
     static Logger log = LoggerFactory.getLogger(WeaponSuitTest.class);
@@ -61,7 +58,7 @@ public class WeaponSuitTest {
         priest.equipWeapon(shield);
 
         assertEquals(125,  ogre.getHealth());
-        assertEquals(17, lancelot.getAttack());
+        assertEquals(17, lancelot.getBombAttack());
         assertEquals(4, richard.getDefense());
         assertEquals(200, eric.getVampirism());
         assertEquals(15, freelancer.getHealth());

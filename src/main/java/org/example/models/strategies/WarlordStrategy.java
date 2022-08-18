@@ -10,7 +10,7 @@ import java.util.stream.Stream;
 import static java.util.stream.Collectors.groupingBy;
 import static java.util.stream.Collectors.toCollection;
 
-public class WarlordStartegy implements Strategy{
+public class WarlordStrategy implements Strategy{
     @Override
     public void moveUnits(Army army) {
         var itArmy = army.getTroops().iterator();
@@ -20,7 +20,7 @@ public class WarlordStartegy implements Strategy{
 
     private static List<IWarrior> sortArmy(Iterator<IWarrior> itArmy) {
         var groups = Stream.generate(itArmy::hasNext).takeWhile(b -> b).map(b -> itArmy.next())
-                .collect(groupingBy(WarlordStartegy::classify, toCollection(ArrayDeque::new)));
+                .collect(groupingBy(WarlordStrategy::classify, toCollection(ArrayDeque::new)));
         int total = groups.values().stream().mapToInt(Collection::size).sum();
         var res = new ArrayList<IWarrior>(total);
         // first:
@@ -36,9 +36,9 @@ public class WarlordStartegy implements Strategy{
         return res;
     }
 
-    private static String classify(IWarrior w) {
-        if (!w.isAlive()) return "Dead";
-        String name = w.getClass().getSimpleName();
+    private static String classify(IWarrior warrior) {
+        if (!warrior.isAlive()) return "Dead";
+        String name = warrior.getClass().getSimpleName();
         return switch (name) {
             case "Warlord", "Healer", "Lancer", "Bomber" -> name;
             default -> "Fighter";

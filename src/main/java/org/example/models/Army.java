@@ -1,17 +1,14 @@
 package org.example.models;
 
 import org.example.models.strategies.Strategy;
-import org.example.models.strategies.WarlordStartegy;
+import org.example.models.strategies.WarlordStrategy;
 import org.example.models.weapons.IWeapon;
-import org.example.models.weapons.Weapon;
-
 import java.util.*;
 import java.util.function.Supplier;
 
 public class Army {
     private List<IWarrior> troops = new ArrayList<>();
-    private Warlord warlord;
-    private Strategy strategy=new WarlordStartegy();
+    private Strategy strategy=new WarlordStrategy();
 
 
     public List<IWarrior> getTroops() {
@@ -76,14 +73,14 @@ public class Army {
             return this;
         }
 
-        for(int i=0 ;i<quantity;i++){
+        for(int i=0 ;i<quantity;i++) {
             IWarrior next = factory.get();
             troops.add(next);
         }
         return this;
     }
 
-    public Army equipWarriorAtPosition(int position, IWeapon weapon){
+    public Army equipWarriorAtPosition(int position, IWeapon weapon) {
         getWarrior(position).equipWeapon(weapon);
         return this;
     }
@@ -93,7 +90,6 @@ public class Army {
             strategy.moveUnits(this);
         }
     }
-
 
     @Override
     public String toString() {

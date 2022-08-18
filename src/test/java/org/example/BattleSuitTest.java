@@ -8,11 +8,10 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import java.util.stream.Stream;
-
 import static org.junit.jupiter.api.Assertions.*;
-public class BattleSuitTest {
+
+class BattleSuitTest {
     static Logger log = LoggerFactory.getLogger(BattleSuitTest.class);
     @Test
     void smokeTest() {
@@ -268,7 +267,4 @@ public class BattleSuitTest {
                         false)
         );
     }
-
-
-
 }

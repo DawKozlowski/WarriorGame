@@ -3,11 +3,9 @@ package org.example;
 import org.example.models.*;
 import org.example.services.Battle;
 import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.*;
 
-public class WarlordSuitTest {
-
+class WarlordSuitTest {
 
     @Test
     void smokeTest() {
@@ -18,6 +16,7 @@ public class WarlordSuitTest {
 
         var myArmy = new Army();
         myArmy.addUnits(Warlord::new, 1);
+        myArmy.addUnits(Bomber::new, 1);
         myArmy.addUnits(Warrior::new, 2);
         myArmy.addUnits(Lancer::new, 2);
         myArmy.addUnits(Healer::new, 2);
@@ -34,6 +33,7 @@ public class WarlordSuitTest {
 // you can provide any other interface for testing the order
         assertEquals(Lancer.class, myArmy.getWarrior(0).getClass());
         assertEquals(Healer.class, myArmy.getWarrior(1).getClass());
+        assertEquals(Bomber.class, myArmy.getWarrior(6).getClass());
 // negative index means from the last position, so -1 == last
         assertEquals(Warlord.class, myArmy.getWarrior(myArmy.size() - 1).getClass());
         assertEquals(Vampire.class, enemyArmy.getWarrior(0).getClass());

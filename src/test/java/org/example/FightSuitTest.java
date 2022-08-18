@@ -7,9 +7,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
-
 import java.util.stream.Stream;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 class FightSuitTest {
@@ -126,7 +124,7 @@ class FightSuitTest {
         //act
         knight.hit(warrior);
         int actualHealth =warrior.getHealth();
-        int expectedHealth = Warrior.INITIAL_HEALTH-Knight.ATTACK;
+        int expectedHealth = Warrior.INITIAL_HEALTH-Knight.INITIAL_ATTACK;
         //assert
         assertEquals(expectedHealth, actualHealth);
     }
@@ -141,7 +139,7 @@ class FightSuitTest {
         warrior.hit(vampire);
         vampire.hit(warrior);
         int actualHealth =vampire.getHealth();
-        int expectedHealth = Vampire.INITIAL_HEALTH-Warrior.ATTACK+Vampire.ATTACK*Vampire.VAMPIRISM/100;
+        int expectedHealth = Vampire.INITIAL_HEALTH-Warrior.INITIAL_ATTACK +Vampire.INITIAL_ATTACK *Vampire.INITIAL_VAMPIRISM /100;
         //assert
         assertEquals(expectedHealth, actualHealth);
     }
@@ -171,7 +169,7 @@ class FightSuitTest {
         vampire.setHealth(37);
         warrior.setHealth(1);
         //act
-        int expectedHealth = vampire.getHealth() + Warrior.ATTACK*Vampire.VAMPIRISM/100;
+        int expectedHealth = vampire.getHealth() + Warrior.INITIAL_ATTACK *Vampire.INITIAL_VAMPIRISM /100;
         vampire.hit(warrior);
         int actualHealth =vampire.getHealth();
         //assert

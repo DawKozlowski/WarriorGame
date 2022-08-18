@@ -1,25 +1,21 @@
 package org.example.models;
 
 import org.example.models.weapons.IWeapon;
-import org.example.models.weapons.Weapon;
 
 public class Vampire extends Warrior{
-    public static final int ATTACK = 4;
-
+    public static final int INITIAL_ATTACK = 4;
     public static final int INITIAL_HEALTH  = 40;
-
-    public static final int VAMPIRISM = 50;
-
+    public static final int INITIAL_VAMPIRISM = 50;
     private int health;
     private int attack;
     private int vampirism;
     private int newInitialHealth;
 
     public Vampire(){
-        super(INITIAL_HEALTH, ATTACK);
-        this.vampirism=VAMPIRISM;
+        super(INITIAL_HEALTH, INITIAL_ATTACK);
+        this.vampirism= INITIAL_VAMPIRISM;
         this.health=INITIAL_HEALTH;
-        this.attack=ATTACK;
+        this.attack= INITIAL_ATTACK;
         this.newInitialHealth=INITIAL_HEALTH;
     }
 
@@ -34,13 +30,13 @@ public class Vampire extends Warrior{
     }
 
     @Override
-    public int getAttack() {
+    public int getBombAttack() {
         return attack;
     }
 
     @Override
-    public void setAttack(int attack) {
-        this.attack = attack;
+    public void setBombAttack(int bombAttack) {
+        this.attack = bombAttack;
     }
 
     public int getVampirism() {
@@ -60,6 +56,7 @@ public class Vampire extends Warrior{
         setHealth(getHealth() + damage*getVampirism()/100);
     }
 
+    @Override
     public IWarrior equipWeapon(IWeapon weapon) {
         newInitialHealth+=weapon.getHealth();
         super.equipWeapon(weapon);

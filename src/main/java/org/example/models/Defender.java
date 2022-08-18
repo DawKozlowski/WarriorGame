@@ -1,27 +1,25 @@
 package org.example.models;
 
 import org.example.models.weapons.IWeapon;
-import org.example.models.weapons.Weapon;
 
 public class Defender extends Warrior implements HasDefense{
-    public static final int ATTACK = 3;
+    public static final int INITIAL_ATTACK = 3;
     public static final int INITIAL_HEALTH  = 60;
-    public static final int DEFENCE = 2;
-
+    public static final int INITIAL_DEFENCE = 2;
     private int health;
     private int attack;
     private int defence;
     private int newInitialHealth;
 
     public Defender() {
-        this(INITIAL_HEALTH, ATTACK);
+        this(INITIAL_HEALTH, INITIAL_ATTACK);
     }
 
-    public Defender(int health, int attack){
+    public Defender(int health, int attack) {
         super(health, attack);
-        this.defence=DEFENCE;
+        this.defence= INITIAL_DEFENCE;
         this.health=INITIAL_HEALTH;
-        this.attack=ATTACK;
+        this.attack= INITIAL_ATTACK;
         this.newInitialHealth=INITIAL_HEALTH;
     }
 
@@ -36,13 +34,13 @@ public class Defender extends Warrior implements HasDefense{
     }
 
     @Override
-    public int getAttack() {
+    public int getBombAttack() {
         return attack;
     }
 
     @Override
-    public void setAttack(int attack) {
-        this.attack = attack;
+    public void setBombAttack(int bombAttack) {
+        this.attack = bombAttack;
     }
 
     @Override
@@ -59,6 +57,7 @@ public class Defender extends Warrior implements HasDefense{
         setHealth(getHealth() - (damageDealer.hitPoints()-getDefense()));
     }
 
+    @Override
     public IWarrior equipWeapon(IWeapon weapon) {
         newInitialHealth+= weapon.getHealth();
         setDefence(getDefense()+ weapon.getDefense());

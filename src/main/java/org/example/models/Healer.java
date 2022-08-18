@@ -1,26 +1,20 @@
 package org.example.models;
 
 import org.example.models.weapons.IWeapon;
-import org.example.models.weapons.Weapon;
 
 public class Healer extends Warrior {
-    public static final int ATTACK = 0;
-
+    public static final int INITIAL_ATTACK = 0;
     public static final int INITIAL_HEALTH  = 60;
-
     public static final int INITIAL_HEALPOWER  = 2;
-
     private int health;
-
     private int attack;
-
     private int healPower;
     private int newInitialHealth;
 
-    public Healer(){
-        super(INITIAL_HEALTH, ATTACK);
+    public Healer() {
+        super(INITIAL_HEALTH, INITIAL_ATTACK);
         this.health=INITIAL_HEALTH;
-        this.attack=ATTACK;
+        this.attack= INITIAL_ATTACK;
         this.healPower=INITIAL_HEALPOWER;
         this.newInitialHealth=INITIAL_HEALTH;
     }
@@ -36,13 +30,13 @@ public class Healer extends Warrior {
     }
 
     @Override
-    public int getAttack() {
+    public int getBombAttack() {
         return attack;
     }
 
     @Override
-    public void setAttack(int attack) {
-        this.attack = attack;
+    public void setBombAttack(int bombAttack) {
+        this.attack = bombAttack;
     }
 
     public int getHealPower() {
@@ -60,7 +54,9 @@ public class Healer extends Warrior {
     }
 
     @Override
-    public void hit(IWarrior opponent) {}
+    public void hit(IWarrior opponent) {
+        // Do nothing because Healer doesn't attack
+    }
 
     @Override
     public void processCommand(ICommand command, IWarrior sender) {
@@ -70,6 +66,7 @@ public class Healer extends Warrior {
         super.processCommand(command, sender);
     }
 
+    @Override
     public IWarrior equipWeapon(IWeapon weapon) {
         newInitialHealth+=weapon.getHealth();
         super.equipWeapon(weapon);
@@ -85,8 +82,4 @@ public class Healer extends Warrior {
                 ", healPower=" + healPower +
                 '}';
     }
-
-
-
-
 }

@@ -16,8 +16,12 @@ public interface IWarrior extends CanAttack, HasHealth {
             int healthBefore = getHealth();
             receiveHit(new SimpleDamage(bombCommand.damage, this));
             bombCommand.setDamage(bombCommand.damage - healthBefore);
+            if(!isAlive()) {
+                getBehind().ifPresent(IWarrior -> IWarrior.processCommand(command, this));
+            }
+        }else {
+            getBehind().ifPresent(IWarrior -> IWarrior.processCommand(command, this));
         }
-        getBehind().ifPresent(IWarrior -> IWarrior.processCommand(command, this));
     }
 
     IWarrior equipWeapon(IWeapon weapon);
@@ -62,9 +66,9 @@ interface  HasHealth {
 }
 
 interface CanAttack {
-    int getAttack();
+    int getBombAttack();
 
-    void setAttack(int attack);
+    void setBombAttack(int bombAttack);
 }
 
 interface HasDefense {

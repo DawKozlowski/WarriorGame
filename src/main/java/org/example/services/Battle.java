@@ -26,7 +26,6 @@ public class Battle {
         return warrior1.isAlive();
     }
 
-
     public static boolean fight(Army army1, Army army2) {
         army1.lineUp();
         army2.lineUp();
@@ -53,5 +52,4 @@ public class Battle {
         }
         return army1.isAlive();
     }
-
 }

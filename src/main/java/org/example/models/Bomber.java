@@ -4,16 +4,16 @@ import org.example.models.weapons.IWeapon;
 
 public class Bomber extends Warrior{
 
-    public static final int ATTACK = 100;
+    public static final int INITIAL_BOMBATTACK = 100;
     public static final int INITIAL_HEALTH  = 50;
     private int health;
-    private int attack;
+    private int bombAttack;
     private int newInitialHealth;
 
-    public Bomber(){
-        super(INITIAL_HEALTH, ATTACK);
+    public Bomber() {
+        super(INITIAL_HEALTH, INITIAL_BOMBATTACK);
         this.health=INITIAL_HEALTH;
-        this.attack=ATTACK;
+        this.bombAttack = INITIAL_BOMBATTACK;
         this.newInitialHealth=INITIAL_HEALTH;
     }
 
@@ -28,24 +28,26 @@ public class Bomber extends Warrior{
     }
 
     @Override
-    public int getAttack() {
-        return attack;
+    public int getBombAttack() {
+        return bombAttack;
     }
 
     @Override
-    public void setAttack(int attack) {
-        this.attack = attack;
+    public void setBombAttack(int bombAttack) {
+        this.bombAttack = bombAttack;
     }
 
     @Override
     public void hit(IWarrior opponent) {
-        opponent.processCommand(new BombCommand(ATTACK), this);
-        setHealth(getHealth()-ATTACK);
+        opponent.processCommand(new BombCommand(bombAttack), this);
+        setHealth(getHealth()- bombAttack);
     }
 
+    @Override
     public IWarrior equipWeapon(IWeapon weapon) {
         newInitialHealth+=weapon.getHealth();
         setHealth(getHealth()+weapon.getHealth());
+        setBombAttack(getBombAttack()+weapon.getBombAttack());
         return this;
     }
 
@@ -53,7 +55,7 @@ public class Bomber extends Warrior{
     public String toString() {
         return "Bomber{" +
                 "health=" + health +
-                ", attack=" + attack +
+                ", bomb attack=" + bombAttack +
                 '}';
     }
 }

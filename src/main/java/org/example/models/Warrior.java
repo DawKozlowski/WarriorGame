@@ -1,24 +1,18 @@
 package org.example.models;
 
 import org.example.models.weapons.IWeapon;
-import org.example.models.weapons.Weapon;
-
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Optional;
 
 public class Warrior implements IWarrior{
-    public static final int ATTACK = 5;
+    public static final int INITIAL_ATTACK = 5;
     public static final int INITIAL_HEALTH  = 50;
     private int health;
     private int newInitialHealth;
     private int attack;
     private IWarrior nextBehind;
 
-    private final List<Weapon> weapons = new ArrayList<>();
-
     public Warrior() {
-        this(INITIAL_HEALTH, ATTACK);
+        this(INITIAL_HEALTH, INITIAL_ATTACK);
     }
 
     protected Warrior(int health, int attack) {
@@ -37,17 +31,19 @@ public class Warrior implements IWarrior{
         return health;
     }
 
-    public int getAttack() {
+    @Override
+    public int getBombAttack() {
         return attack;
     }
 
-    public void setAttack(int attack) {
-        this.attack = attack;
+    @Override
+    public void setBombAttack(int bombAttack) {
+        this.attack = bombAttack;
     }
 
     @Override
     public void hit(IWarrior opponent) {
-        opponent.receiveHit(new SimpleDamage(getAttack(), this));
+        opponent.receiveHit(new SimpleDamage(getBombAttack(), this));
         processCommand(new HealCommand(), this);
     }
 
@@ -69,11 +65,9 @@ public class Warrior implements IWarrior{
     public IWarrior equipWeapon(IWeapon weapon) {
         newInitialHealth+=weapon.getHealth();
         setHealth(getHealth()+weapon.getHealth());
-        setAttack(getAttack()+ weapon.getAttack());
+        setBombAttack(getBombAttack()+ weapon.getAttack());
         return this;
     }
-
-
 
     @Override
     public String toString() {

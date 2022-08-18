@@ -1,28 +1,21 @@
 package org.example.models;
 
-import org.example.models.Defender;
-import org.example.models.strategies.Strategy;
-import org.example.models.strategies.WarlordStartegy;
-import org.example.models.weapons.IWeapon;
-
-import java.util.Collection;
 
 public class Warlord extends Defender {
 
-    public static final int ATTACK = 4;
+    public static final int INITIAL_ATTACK = 4;
     public static final int INITIAL_HEALTH  = 100;
-    public static final int DEFENCE = 2;
-
+    public static final int INITIAL_DEFENCE = 2;
     private int health;
     private int attack;
     private int defence;
     private int newInitialHealth;
 
     public Warlord(){
-        super(INITIAL_HEALTH, ATTACK);
-        this.defence=DEFENCE;
+        super(INITIAL_HEALTH, INITIAL_ATTACK);
+        this.defence= INITIAL_DEFENCE;
         this.health=INITIAL_HEALTH;
-        this.attack=ATTACK;
+        this.attack= INITIAL_ATTACK;
         this.newInitialHealth=INITIAL_HEALTH;
     }
 
@@ -37,13 +30,13 @@ public class Warlord extends Defender {
     }
 
     @Override
-    public int getAttack() {
+    public int getBombAttack() {
         return attack;
     }
 
     @Override
-    public void setAttack(int attack) {
-        this.attack = attack;
+    public void setBombAttack(int bombAttack) {
+        this.attack = bombAttack;
     }
 
     @Override
@@ -51,6 +44,7 @@ public class Warlord extends Defender {
         return defence;
     }
 
+    @Override
     public void setDefence(int defence) {
         this.defence = defence;
     }

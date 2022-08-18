@@ -13,7 +13,7 @@ public class Weapon implements IWeapon {
    private int defense;
    private int vampirism;
    private int healPower;
-
+   private int bombAttack;
 
 
    public static Weapon newSword() {
@@ -54,6 +54,12 @@ public class Weapon implements IWeapon {
               .attack(3)
               .health(30)
               .healPower(3)
+              .build();
+   }
+
+   public static Weapon newBigBomb() {
+      return Weapon.builder()
+              .bombAttack(100)
               .build();
    }
 

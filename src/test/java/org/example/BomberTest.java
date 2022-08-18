@@ -10,13 +10,10 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import java.util.stream.Stream;
-
 import static org.junit.jupiter.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class BomberTest {
+class BomberTest {
 
     static Logger log = LoggerFactory.getLogger(BomberTest.class);
 
@@ -32,6 +29,7 @@ public class BomberTest {
         assertFalse(bruce.isAlive());
         assertFalse(Battle.fight(carl, adam));
         assertFalse(carl.isAlive());
+
     }
 
     @ParameterizedTest(name = "[{index} {0} is fighting against {1} expecting {2}]")
@@ -97,7 +95,7 @@ public class BomberTest {
 
 
     @Test
-    @DisplayName("7. Bomber Fights Warrior, Bomber should win")
+    @DisplayName("1. Bomber Fights Warrior, Bomber should win")
     void whenBomberFightsWarrior_Expect_BomberWins() {
         //arrange
         var bomber = new Bomber();
@@ -109,7 +107,7 @@ public class BomberTest {
     }
 
     @Test
-    @DisplayName("5. Bomber fights 3 Vampires. Third Vampire should have 20 health")
+    @DisplayName("2. Bomber fights 3 Vampires. Third Vampire should have 20 health")
     void whenBomberFights3Vampires_Expect_ThirdVampireHealthIs20() {
         //arrange
         var army1= new Army().addUnits(Bomber::new, 1);
@@ -123,7 +121,7 @@ public class BomberTest {
     }
 
     @Test
-    @DisplayName("5. 2 Bombers fight 4 Lancers. Last Lancer should have 0 health")
+    @DisplayName("3. 2 Bombers fight 4 Lancers. Last Lancer should have 0 health")
     void when2BombersFight4Lancers_Expect_LastLancerHave0Health() {
         //arrange
         var army1= new Army().addUnits(Bomber::new, 2);
@@ -138,7 +136,7 @@ public class BomberTest {
 
 
     @Test
-    @DisplayName("6. 2 Bombers fight 5 Lancers. Last Lancer should have 50 health")
+    @DisplayName("4. 2 Bombers fight 5 Lancers. Last Lancer should have 50 health")
     void when2BombersFight5Lancers_Expect_LastLancerHave50Health() {
         //arrange
         var army1= new Army().addUnits(Bomber::new, 2);
@@ -152,7 +150,7 @@ public class BomberTest {
     }
 
     @Test
-    @DisplayName("7. Bomber fights 1 Lancer with 3 Shields. Lancer should have 10 health")
+    @DisplayName("5. Bomber fights 1 Lancer with 3 Shields. Lancer should have 10 health")
     void whenBomberFights1LancersWith3Shields_Expect_LancerHave10Health() {
         //arrange
         var bomber =new Bomber();
@@ -166,7 +164,7 @@ public class BomberTest {
     }
 
     @Test
-    @DisplayName("7. Bomber with 3 Shields fights 4 Lancers. Last Lancer should have 0 health")
+    @DisplayName("6. Bomber with 3 Shields fights 4 Lancers. Last Lancer should have 0 health")
     void whenBomberWith3ShieldsFights3Lancers_Expect_LastLancerHave10Health() {
         //arrange
         var army1= new Army().addUnits(Bomber::new, 1).equipWarriorAtPosition(0, Weapon.newShield()).equipWarriorAtPosition(0, Weapon.newShield()).equipWarriorAtPosition(0, Weapon.newShield());
@@ -180,7 +178,7 @@ public class BomberTest {
     }
 
     @Test
-    @DisplayName("8. Bomber fights 2 Defenders. Last Defender should have 22 health")
+    @DisplayName("7. Bomber fights 2 Defenders. Last Defender should have 22 health")
     void whenBomberFights2LDefenders_Expect_LastDefenderHave22Health() {
         //arrange
         var army1 = new Army().addUnits(Bomber::new, 1);
@@ -189,6 +187,20 @@ public class BomberTest {
         //act
         Battle.fight(army1, army2);
         var actual = army2.getWarrior(1).getHealth();
+        //assert
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    @DisplayName("8. Bomber with Big Bomb fights  5 Vampires. Last Vampire should be dead")
+    void whenBomberWithBigBombFights5Vampires_Expect_LastVampireIsDead() {
+        //arrange
+        var army1 = new Army().addUnits(Bomber::new, 1).equipWarriorAtPosition(0, Weapon.newBigBomb());
+        var army2 = new Army().addUnits(Vampire::new, 5);
+        int expected = 0;
+        //act
+        Battle.fight(army1, army2);
+        var actual = army2.getWarrior(4).getHealth();
         //assert
         assertEquals(expected, actual);
     }
