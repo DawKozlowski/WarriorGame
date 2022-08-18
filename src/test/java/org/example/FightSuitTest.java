@@ -178,6 +178,18 @@ class FightSuitTest {
         assertEquals(expectedHealth, actualHealth);
     }
 
+    @Test
+    @DisplayName("7. Bomber Fights Warrior, Bomber should win")
+    void whenBomberFightsWarrior_Expect_BomberWins() {
+        //arrange
+        var bomber = new Bomber();
+        var warrior =new Warrior();
+        //act
+        var actual=Battle.fight(bomber, warrior);
+        //assert
+        assertFalse(actual);
+    }
+
 
 
 

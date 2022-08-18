@@ -68,6 +68,13 @@ public class BattleSuitTest {
                         false),
                 Arguments.of(
                         new Army()
+                                .addUnits(Bomber::new, 1)
+                                .addUnits(Healer::new, 1),
+                        new Army()
+                                .addUnits(Warrior::new, 2),
+                        true),
+                Arguments.of(
+                        new Army()
                                 .addUnits(Warrior::new, 2),
                         new Army()
                                 .addUnits(Warrior::new, 3),
@@ -246,6 +253,18 @@ public class BattleSuitTest {
                                 .addUnits(Healer::new, 1)
                                 .addUnits(Vampire::new, 6)
                                 .addUnits(Lancer::new, 4),
+                        false),
+                Arguments.of(
+                        new Army()
+                                .addUnits(Bomber::new, 1)
+                                .addUnits(Defender::new, 2)
+                                .addUnits(Vampire::new, 3)
+                                .addUnits(Warrior::new, 4),
+                        new Army()
+                                .addUnits(Vampire::new, 2)
+                                .addUnits(Warrior::new, 4)
+                                .addUnits(Defender::new, 4)
+                                .addUnits(Vampire::new, 3),
                         false)
         );
     }

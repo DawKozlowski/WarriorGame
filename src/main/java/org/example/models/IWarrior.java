@@ -12,6 +12,13 @@ public interface IWarrior extends CanAttack, HasHealth{
     void receiveHit(IDamage damageDealer);
 
     default void processCommand(ICommand command, IWarrior sender) {
+        if (command instanceof BombCommand bombCommand) {
+            if(bombCommand.damage>0) {
+                int health = getHealth();
+                setHealth(getHealth() - bombCommand.damage);
+                bombCommand.setDamage(bombCommand.damage - health);
+            }
+        }
         getBehind().ifPresent(IWarrior -> IWarrior.processCommand(command, this));
     }
 
@@ -27,6 +34,17 @@ interface ICommand{}
 
 class HealCommand implements ICommand {}
 
+class BombCommand implements ICommand {
+    int damage;
+
+    public BombCommand(int damage) {
+        this.damage = damage;
+    }
+
+    public void setDamage(int damage) {
+        this.damage = damage;
+    }
+}
 
 interface IDamage {
     int hitPoints();

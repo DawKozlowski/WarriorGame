@@ -7,12 +7,10 @@
 ]
 -src/main/java/org/example/models/Vampire.java,2\5\2559ab560e6c68b8f57007ccfbd61e078c2d23ff
 \
-,src/main/java/org/example/models/Lancer.java,c\f\cf2e692a979559f61f9b73fab2ce6710acfac54b
-\
 ,src/main/java/org/example/models/Knight.java,5\f\5f3f9a69cefdef230db801fcb684c8cf8ede999b
-d
-4src/main/java/org/example/models/weapons/Weapon.java,2\c\2c7a54fbed0f10431e91531df0ee5dffca0ed99b
-Z
-*src/test/java/org/example/GranualTest.java,4\9\49887a65f27c1cc9eaa7f6e6f690a4d303cca906
 ]
--src/test/java/org/example/WeaponSuitTest.java,4\5\45b2b24b6dc2ac7169e4b99e3fa0542c6e720263
+-src/main/java/org/example/models/Warlord.java,a\b\abbe845647f9ea15b1ac35aa5758abf2cbdbfd91
+i
+9src/main/java/org/example/models/strategies/Strategy.java,b\3\b357b81b0096004ea85959183e0d003db97ef1ff
+Z
+*src/main/java/org/example/models/Army.java,a\b\abe46debff5aba4f9917ff9cb88f59852b062173
