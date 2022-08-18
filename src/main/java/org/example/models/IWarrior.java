@@ -5,24 +5,22 @@ import org.example.models.weapons.IWeapon;
 
 import java.util.Optional;
 
-public interface IWarrior extends CanAttack, HasHealth{
+public interface IWarrior extends CanAttack, HasHealth {
 
     void hit(IWarrior opponent);
 
     void receiveHit(IDamage damageDealer);
 
     default void processCommand(ICommand command, IWarrior sender) {
-        if (command instanceof BombCommand bombCommand) {
-            if(bombCommand.damage>0) {
-                int healthBefore = getHealth();
-                receiveHit(new SimpleDamage(bombCommand.damage, this));
-                bombCommand.setDamage(bombCommand.damage - healthBefore);
-            }
+        if (command instanceof BombCommand bombCommand && bombCommand.damage>0) {
+            int healthBefore = getHealth();
+            receiveHit(new SimpleDamage(bombCommand.damage, this));
+            bombCommand.setDamage(bombCommand.damage - healthBefore);
         }
         getBehind().ifPresent(IWarrior -> IWarrior.processCommand(command, this));
     }
 
-    public IWarrior equipWeapon(IWeapon weapon);
+    IWarrior equipWeapon(IWeapon weapon);
 
     Optional<IWarrior> getBehind();
 
@@ -51,7 +49,7 @@ interface IDamage {
     IWarrior damageDealer();
 }
 
-record SimpleDamage (int hitPoints, IWarrior damageDealer) implements IDamage{};
+record SimpleDamage (int hitPoints, IWarrior damageDealer) implements IDamage{}
 
 interface  HasHealth {
     int getHealth();

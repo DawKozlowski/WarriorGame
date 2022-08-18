@@ -30,7 +30,7 @@ public class WarlordStartegy implements Strategy{
                 .findFirst()
                 .ifPresent(res::add);
         // rest
-        Stream.of("Healer", "Lancer", "Fighter", "Warlord", "Dead")
+        Stream.of("Healer", "Lancer", "Fighter", "Bomber", "Warlord", "Dead")
                 .map(groups::get).filter(Objects::nonNull)
                 .forEach(res::addAll);
         return res;
@@ -40,7 +40,7 @@ public class WarlordStartegy implements Strategy{
         if (!w.isAlive()) return "Dead";
         String name = w.getClass().getSimpleName();
         return switch (name) {
-            case "Warlord", "Healer", "Lancer" -> name;
+            case "Warlord", "Healer", "Lancer", "Bomber" -> name;
             default -> "Fighter";
         };
     }
