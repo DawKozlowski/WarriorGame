@@ -14,9 +14,9 @@ public interface IWarrior extends CanAttack, HasHealth{
     default void processCommand(ICommand command, IWarrior sender) {
         if (command instanceof BombCommand bombCommand) {
             if(bombCommand.damage>0) {
-                int health = getHealth();
-                setHealth(getHealth() - bombCommand.damage);
-                bombCommand.setDamage(bombCommand.damage - health);
+                int healthBefore = getHealth();
+                receiveHit(new SimpleDamage(bombCommand.damage, this));
+                bombCommand.setDamage(bombCommand.damage - healthBefore);
             }
         }
         getBehind().ifPresent(IWarrior -> IWarrior.processCommand(command, this));

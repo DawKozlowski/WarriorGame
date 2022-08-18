@@ -149,4 +149,18 @@ public class GranualTest {
         assertEquals(expected, actual);
     }
 
+    @Test
+    @DisplayName("8. Bomber fights 2 Defenders. Last Defender should have 22 health")
+    void whenBomberFights2LDefenders_Expect_LastDefenderHave22Health() {
+        //arrange
+        var army1 = new Army().addUnits(Bomber::new, 1);
+        var army2 = new Army().addUnits(Defender::new, 2);
+        var expected = 22;
+        //act
+        Battle.fight(army1, army2);
+        var actual = army2.getWarrior(1).getHealth();
+        //assert
+        assertEquals(expected, actual);
+    }
+
 }

@@ -54,7 +54,9 @@ public class Healer extends Warrior {
     }
 
     public void heal(IWarrior warrior) {
-        warrior.setHealth(warrior.getHealth() + getHealPower());
+        if(warrior.isAlive()) {
+            warrior.setHealth(warrior.getHealth() + getHealPower());
+        }
     }
 
     @Override
