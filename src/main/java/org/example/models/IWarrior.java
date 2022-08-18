@@ -1,8 +1,6 @@
 package org.example.models;
 
 import org.example.models.weapons.IWeapon;
-
-
 import java.util.Optional;
 
 public interface IWarrior extends CanAttack, HasHealth {
@@ -29,7 +27,6 @@ public interface IWarrior extends CanAttack, HasHealth {
     Optional<IWarrior> getBehind();
 
     void setBehind(IWarrior behind);
-
 }
 
 interface ICommand{}
