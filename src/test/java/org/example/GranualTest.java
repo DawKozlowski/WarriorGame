@@ -9,7 +9,7 @@ class GranualTest {
 
     class Rookie extends Warrior {
         @Override
-        public int getBombAttack() {
+        public int getAttack() {
             return 1;
         }
     }

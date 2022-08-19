@@ -30,12 +30,12 @@ public class Warlord extends Defender {
     }
 
     @Override
-    public int getBombAttack() {
+    public int getAttack() {
         return attack;
     }
 
     @Override
-    public void setBombAttack(int bombAttack) {
+    public void setAttack(int bombAttack) {
         this.attack = bombAttack;
     }
 

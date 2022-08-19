@@ -18,7 +18,7 @@ class Rookie extends Warrior {
     }
 
     @Override
-    public int getBombAttack() {
+    public int getAttack() {
         return 1;
     }
 }
@@ -58,7 +58,7 @@ class WeaponSuitTest {
         priest.equipWeapon(shield);
 
         assertEquals(125,  ogre.getHealth());
-        assertEquals(17, lancelot.getBombAttack());
+        assertEquals(17, lancelot.getAttack());
         assertEquals(4, richard.getDefense());
         assertEquals(200, eric.getVampirism());
         assertEquals(15, freelancer.getHealth());

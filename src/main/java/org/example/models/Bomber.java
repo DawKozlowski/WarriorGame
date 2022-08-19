@@ -27,27 +27,25 @@ public class Bomber extends Warrior{
         this.health = Math.min(health, newInitialHealth);
     }
 
-    @Override
     public int getBombAttack() {
         return bombAttack;
     }
 
-    @Override
     public void setBombAttack(int bombAttack) {
         this.bombAttack = bombAttack;
     }
 
     @Override
     public void hit(IWarrior opponent) {
-        opponent.processCommand(new BombCommand(bombAttack), this);
-        setHealth(getHealth()- bombAttack);
+        opponent.processCommand(new BombCommand(getBombAttack()), this);
+        setHealth(getHealth()- getBombAttack());
     }
 
     @Override
     public IWarrior equipWeapon(IWeapon weapon) {
         newInitialHealth+=weapon.getHealth();
         setHealth(getHealth()+weapon.getHealth());
-        setBombAttack(getBombAttack()+weapon.getBombAttack());
+        setBombAttack(getAttack()+weapon.getBombAttack());
         return this;
     }
 

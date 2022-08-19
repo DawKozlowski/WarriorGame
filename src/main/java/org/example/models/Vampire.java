@@ -30,12 +30,12 @@ public class Vampire extends Warrior{
     }
 
     @Override
-    public int getBombAttack() {
+    public int getAttack() {
         return attack;
     }
 
     @Override
-    public void setBombAttack(int bombAttack) {
+    public void setAttack(int bombAttack) {
         this.attack = bombAttack;
     }
 
@@ -61,7 +61,6 @@ public class Vampire extends Warrior{
         newInitialHealth+=weapon.getHealth();
         super.equipWeapon(weapon);
         setVampirism(getVampirism()+ weapon.getVampirism());
-
         return this;
     }
 

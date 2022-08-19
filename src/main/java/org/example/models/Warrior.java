@@ -32,18 +32,18 @@ public class Warrior implements IWarrior{
     }
 
     @Override
-    public int getBombAttack() {
+    public int getAttack() {
         return attack;
     }
 
     @Override
-    public void setBombAttack(int bombAttack) {
+    public void setAttack(int bombAttack) {
         this.attack = bombAttack;
     }
 
     @Override
     public void hit(IWarrior opponent) {
-        opponent.receiveHit(new SimpleDamage(getBombAttack(), this));
+        opponent.receiveHit(new SimpleDamage(getAttack(), this));
         processCommand(new HealCommand(), this);
     }
 
@@ -65,7 +65,7 @@ public class Warrior implements IWarrior{
     public IWarrior equipWeapon(IWeapon weapon) {
         newInitialHealth+=weapon.getHealth();
         setHealth(getHealth()+weapon.getHealth());
-        setBombAttack(getBombAttack()+ weapon.getAttack());
+        setAttack(getAttack()+ weapon.getAttack());
         return this;
     }
 

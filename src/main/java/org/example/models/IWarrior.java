@@ -63,9 +63,9 @@ interface  HasHealth {
 }
 
 interface CanAttack {
-    int getBombAttack();
+    int getAttack();
 
-    void setBombAttack(int bombAttack);
+    void setAttack(int bombAttack);
 }
 
 interface HasDefense {
